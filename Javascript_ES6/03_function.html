@@ -1,0 +1,68 @@
+<script>
+    //ES6에서 함수 도입: "화살표 함수(arrow function)" : =>
+    //비교 연산자 : <=, >=
+
+    //기존 함수
+    //일반함수: 직접 함수를 호출
+    function add1(a, b) {
+        return a + b;
+    }
+    console.log(add1(7,8));
+
+    //익명함수: 간접 함수 호출
+    const add2 = function(x, y) {
+        return x + y;    
+    }
+    console.log(add2(6,9));
+
+    //Arrow Function
+    const add3 = (x, y) => x + y;
+    console.log(add3(21, 10));
+
+    //화살표함수의 적용, function을 제거 / {} 대신 '=>'을 작성한다.
+    //(단 조건은 {}실행문 내부에 return문만 선언되었을 때);
+    //함수 실행은 내부에 return문 이외의 문구 작성시 {}는 존재해야함
+
+    const add4 = (x, y) => {
+        const a = 13;
+        return a + x + y;
+    }
+    console.log(add4(4,5));
+
+    //매개변수가 하나인 경우 - 방법1
+    const add5 = (g) => g+9;
+    console.log(add5(6, 24));   
+    
+    //매개변수가 하나인 경우 - 방법2
+    const add6 = g => g+9;
+    console.log(add6(6,24));
+
+    //Hoisting: 소형 감아올리는 장치 => 일반함수구문에서는 아직 로딩이 안된 상태임에도 불구하고 문서상에 상단으로 올리는 현상
+    fnc1();
+    function fnc1() {
+        console.log("fnc1 호출에 의한 함수구문 시행");
+    }
+
+    //fnc2(); //Uncaught ReferenceError: Cannot access 'fnc2' before initialization
+    const fnc2 = function() {
+        console.log("fnc2 호출에 의한 함수구문 시행");
+    }
+    fnc2();
+
+    //실습문제 
+    //세개의 숫자 합계를 화살표 함수를 이용하여 콘솔창에 출력하시오
+    //함수호출문을 통해서 1,2,3을 함수구문에 전달하고 '최종합계'는 6이라는 값을 콘솔창에 출력
+    const add7 = (x,y,z) => x+y+z;
+    console.log(`최종합계는 ${add7(1,2,3)}입니다`); 
+</script>
+
+<h1 id="ch_txt">스누피</h1>
+<!--#1. "스누피"라는 문구를 "카카오"로 변경하시오-->
+<!--#2. "스누피"라는 문구를 "스머프"로 변경하고, 함수 내부에서 리턴을 받아서 콘솔창에 결과물을 출력: 스머프 만세-->
+<script>
+    const ch_txt = document.querySelector("#ch_txt");
+
+    changeTxt = (x) => ch_txt.textContent = x;
+    console.log(changeTxt("카카오"));
+    console.log(`${changeTxt("스머프")} 만세`);
+</script>
