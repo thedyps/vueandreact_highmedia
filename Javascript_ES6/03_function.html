@@ -60,9 +60,13 @@
 <!--#1. "스누피"라는 문구를 "카카오"로 변경하시오-->
 <!--#2. "스누피"라는 문구를 "스머프"로 변경하고, 함수 내부에서 리턴을 받아서 콘솔창에 결과물을 출력: 스머프 만세-->
 <script>
-    const ch_txt = document.querySelector("#ch_txt");
 
-    changeTxt = (x) => ch_txt.textContent = x;
+    const changeTxt = (x) => document.querySelector("#ch_txt").textContent = x;
     console.log(changeTxt("카카오"));
-    console.log(`${changeTxt("스머프")} 만세`);
+
+    const changeTxt2 = (x) => {
+        document.querySelector("#ch_txt").textContent = x;
+        return `${x} 만세`;
+    } 
+    console.log(`${changeTxt2("스머프")}`);
 </script>
