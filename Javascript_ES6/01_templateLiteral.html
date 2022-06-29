@@ -1,0 +1,76 @@
+<script>
+    //템플릿 리터럴(`문자열 또는 데이터 또는 ${변수명}`) - 백틱
+    //병합연산자
+    //*********************** ES5 ************************
+    var str1 = "안녕하세요";
+    var str2  = "만나서 반갑습니다.";
+    console.log(str1 + ". " + str2);
+
+    //객체의 선언: 속성(key:value(데이터))과 메서드(key:value(함수))
+
+    var product1 = {
+        name: "곰인형",
+        price: "10,000"
+    }
+
+    var message1 = "상품 " + product1.name + "의 가격은 " + product1.price + " 입니다." 
+    console.log(message1)
+
+    //숫자형 결합
+    //2*3+4 = 10
+    //2*(3+4) = 14
+    var value1 = 1;
+    var value2 = 2;
+    var result1  = "구입한 총 수량은 " + (value1 + value2) + " 입니다.";
+    console.log(result1)
+
+    //삼항조건연산자 (조건문?실행문1:실행문2 => 조건이 참(true)이면 실행문 1 / 거짓(false)이면 실행문 2를 실행)
+    var bool1 = false;
+    var result_bool1 = "논리형 값은 " + (bool1? "참":"거짓") + " 입니다.";
+    console.log(result_bool1);
+
+    //*********************** ES6 ************************
+    var str3 = "안녕하세요";
+    var str4 = "만나서 반갑습니다.";
+    console.log(`${str3}. ${str4}`);
+
+    var product2 = {
+        name: "곰인형",
+        price: "10,000"
+    }
+    var message2 = `상
+    품 ${product2.name}의 가격은 ${product2.price} 입니다.`;
+    console.log(message2)
+
+    var value3 = 1;
+    var value4 = 2;
+    var result2 = `구입한 총 수량은 ${value3+value4} 입니다.`;
+    console.log(result2);
+
+    var bool2 = false;
+    var result_bool2 = `논리형 값은 ${bool2? "참":"거짓"} 입니다.`;
+    console.log(result_bool2);
+
+    //*****실습 문제 - ES5******
+    var cart1 = {
+        present: "장미 한 묶음",
+        price: 15000
+    };
+    var totalPrice1 = function() {
+        return cart1.price + "원";
+    };
+    var myCart1 = "장바구니에 "  + cart1.present + "이(가) 담겨있습니다. 구입가격은 " + totalPrice1() + " 입니다.";
+    console.log(myCart1);
+
+
+    //*****실습 문제 - ES6******
+    var cart2 = {
+        present: "장미 한 묶음",
+        price: 15000
+    };
+    var totalPrice2 = function() {
+        return `${cart1.price}원`;
+    };
+    var myCart2 = `장바구니에 ${cart1.present}이(가) 담겨있습니다. 구입가격은 ${totalPrice2()} 입니다.`;
+    console.log(myCart2);
+</script>
