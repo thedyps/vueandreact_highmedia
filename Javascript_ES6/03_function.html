@@ -37,6 +37,11 @@
     const add6 = g => g+9;
     console.log(add6(6,24));
 
+    //매개변수가 존재하지 않는 경우
+    const add = () => {
+        console.log("add7 함수 구문 실행")
+    }
+
     //Hoisting: 소형 감아올리는 장치 => 일반함수구문에서는 아직 로딩이 안된 상태임에도 불구하고 문서상에 상단으로 올리는 현상
     fnc1();
     function fnc1() {
@@ -69,4 +74,105 @@
         return `${x} 만세`;
     } 
     console.log(`${changeTxt2("스머프")}`);
+</script>
+
+
+    <hr/>
+    <h3 id="arrowFunc_this">화살표 함수와 this의 관계 / function과 this의 관계</h3>
+    <div class=".box .opening">
+        나는 박스
+    </div>
+
+    <style>
+    .open{
+        width: 200px;
+        height: 200px;
+        border: 1px solid black;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+    }
+    .opening {
+        background-color: #ff6;
+
+    }
+    </style>
+
+    <script>
+        const $box = document.querySelector(".box");
+        console.log($box);
+
+        /*
+        $box.addEventListener("click", function() {
+            console.log(this);
+            this.classList.add("opening");
+        });
+        */
+
+        /*
+        $box.addEventListener("click", () => {
+            console.log(this);
+
+        });
+        */
+
+        //화살표 함수가 부모 스코프 {}에서 this 값을 상속한다는것을 인지한다면 에러 발생르 막기 위해 일반함수로 반드시 작성한다.
+    </script>
+
+    <!-- 객체에서도 메서드의 설정에서 함수로 작성되는데 , this의 키워드 대상에 따라서 작성하는 방법을 달리해야함-->
+    
+    <script>
+        const person = {
+            age: 10,
+            grow: function () {
+                console.log(this);
+                console.log(this.age);
+                console.log(person.log);
+                this.age++;
+                console.log(this.age);
+            }
+        }
+        console.log(person.age)
+        person.grow();
+        
+        const person2 = {
+            age: 10,
+            grow: () => {
+                console.log(this);
+                this.age++;
+                console.log(this.age);
+            }
+        }
+        person2.grow();
+    </script>
+
+
+<!--arguments 객체-->
+<script>
+    //일반함수 내부에서 arguments 객체의 선언
+    function example0() {
+        console.log(arguments[0]);
+    }
+    example0(1,2,3)
+
+    //익명함수 내부에서 arguments 객체의 선언
+    const example1 = function() {
+        console.log(arguments[0]);
+
+    }
+    example1('a', 'b', 'c');
+
+    //화살표 함수 내부에서 argument 객체의 선언
+    const example2 = () => {
+        console.log(arguments);
+    }
+    //example2('asus', 'gigabyte', 'msi');
+
+    const example4 = (...args) => {
+        console.log(args); //['asus', 'gigabyte', 'msi']
+    }
+
+    example4('asus', 'gigabyte', 'msi');
+
 </script>

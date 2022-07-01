@@ -1,0 +1,132 @@
+<script>
+    const pony = {
+        name: "아반떼",
+        color: "white",
+        start: function() {
+            console.log(`${this.name}가(이) 시동을 겁니다.`);
+        },
+        drive: function() {
+            console.log(`${this.name}가(이) 주행을 합니다.`)
+            this.stop();
+        },
+        stop: function() {
+            console.log(`${this.name}가(이) 주행을 멈춥니다.`);
+            this.parking();
+        },
+        parking: function() {
+            console.log(`${this.name}가(이) 주차를 합니다.`)
+        }
+    }
+    pony.start();
+    pony.drive();
+
+    //일반적인 객체의 단점: 한번 선언된 객체는 재활용이 불가능
+    //객체를 재활용하기 위한 형태로 구조화시키는것이 필요했음 => 프로토타입: 재사용 또는 재활용 가능한 구성
+    const Car = (function() {
+        console.log("프로토타입의 시작");
+        //생성자() = 객체내부에서 어떤 새로운 데이터를 받아들여서 내부의 key와 value 값으로 구성
+        function Car(name1, color1, type1) {
+            this.name = name1;
+            this.color = color1;
+            this.type = type1;
+        }
+        //프로토타입화 시킴
+
+        Car.prototype.start = function() {
+            console.log(this);
+            console.log(`${this.color} ${this.name}이(가) 시동을 건다`);
+            this.drive();
+        }
+        Car.prototype.drive = function() {
+            console.log(`${this.color} ${this.name}이(가) 주행을 한다`);
+            this.stop();
+        }
+        Car.prototype.stop = function() {
+            console.log(`${this.color} ${this.name}이(가) 주행을 멈춥니다`);
+            this.parking();
+        }
+        Car.prototype.parking = function() {
+            console.log(`${this.color} ${this.name}이(가) 주차를 합니다`);
+        }
+
+        return Car;
+    })(); //즉시 실행함수
+
+    const avante = new Car("아반떼", "레드", "준중형")
+    avante.start();
+
+    const tusan = new Car("뉴투산", "메탈", "SUV");
+    tusan.start();
+    //new Date() / new String / new number() / new Object() / new Array()
+
+
+    //학생이 반에 입장했을때, 그 정보를 "000 학생이 00반에 들어갔습니다."
+    const mem_student = [
+        ["신기인", "1반"],
+        ["최규환", "2반"],
+        ["김정미", "3반"],
+        ["손화정", "4반"],
+        ["서동율", "5반"]
+    ]
+
+    const student1 = (function() {
+        //생성자 파트
+        function student1(st_name, st_class) {
+            this.name = st_name;
+            this.class = st_class;
+        }
+
+        student1.prototype.enterance = function() {
+            console.log(`${this.name} 학생이 ${this.class}에 입장했습니다.`)
+        }
+
+        //프로토타입 파트
+
+        return student1;
+    })();
+
+    for(v of mem_student) {
+        console.log(v[0], v[1]);
+        const student = new student1(v[0], v[1]);
+        console.log(student);
+    }
+
+
+
+
+
+
+
+    //실습문제: 게임입장 파트(던전: Dungeon)
+    //배열패탄: {"이름", "종족", "레벨"}
+    const gamers = [
+        {name: "불타는 용병", category: "오크", level:54},
+        {name: "얼음 마법사", category: "용병", level:32},
+        {name: "할리킨", category: "하이엘프", level:43},
+        {name: "냉혈전사", category: "휴먼", level:37},
+        {name: "무도회의 무법자", category: "다크엘프", level:37},
+        {name: "언제나 초보", category: "드워프", level:43}
+    ];
+    //예시, 콘솔창에 "홍길동(오크 - 33) 님이 입장하셨습니다. (6명)"
+    //반드시, 프로토타입을 이용하여 출력할 것
+
+    const gamerEnter = (function() {
+        function gamerEnter(name, category, level) {
+            this.name = name;
+            this.category = category;
+            this.level = level;
+        }
+
+        gamerEnter.prototype.start = function() {
+            console.log(`${this.name}(${this.category} 님이 입장하셨습니다.)`)
+        }
+
+        return gamerEnter;
+    })();
+
+    for(gamer of gamers) {
+        const gamersInstance = new gamerEnter(gamer.name, gamer.category, gamer.level);
+        gamersInstance.start();
+    }
+
+</script>
