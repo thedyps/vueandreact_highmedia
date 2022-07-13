@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>01_hello_vue</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    
+    <div id="main">
+        <!-- Vue라는 인스턴스의 title의 value 값을 p태그 내부의 텍스트영역에 넣을 때 사용 -->
+        <p>{{title}}</p>
+        <h3>{{myName}}</h3>
+    </div>
+
+    <script>
+        //인스턴스를 생성(메모리 공간)
+        new Vue({
+            //아이디 선택자가 "main"인 문서 객체를 지정한다.
+            el : "#main",
+            data : {
+                //문서 내부에 전달할 데이터 값
+                title : "Hello, Vue~!!!",
+                myName : "안재욱"
+            }  
+        });
+    </script>
+
+</body>
+</html>

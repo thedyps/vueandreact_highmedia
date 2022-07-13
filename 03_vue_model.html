@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.0/dist/vue.js"></script>
+</head>
+<body>
+    <!--- v-model 디렉티브를 사용하여 어떤 입력값에 대한 내용을 실시간으로 표시하는 양방향 데이터를 구현할수 있음-->
+
+    <div id="main">
+        <p>{{ message }}</p>
+        <input type="text" v-model:value="message">
+    </div>
+    
+    <div id="user">
+        <p>user 이름: {{name}}</p>
+        <input type="text" v-model:value="name">
+    </div>
+    <!-- 실습문제 - 입력상자를 이요하여 결과를 user 이름: 홍깅동으로 표현-->
+    <script>
+        const vue1 = new Vue({
+            el: "#main",
+            data: {
+                message: "아래의 입력상자에 구문을 작성해 보세요"
+            }
+        })
+
+        const vue2 = new Vue({
+            el: "#user",
+            data: {
+                name: ""
+            }
+        })
+
+        /**
+         * v-bind: 단방향 데이터 바인딩
+         * v-model :양방향 데이터 바인딩
+         * 
+         * <input v-bind:vlaue="sData"> -> sdata값을 문서의 input 영역에 어트리뷰트이 값으로 전달
+         * <input v-model> -> sdata 값의 내용과 연동이 가능
+         * 
+         *
+         */
+    </script>
+</body>
+</html>

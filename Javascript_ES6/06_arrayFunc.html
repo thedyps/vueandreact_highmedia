@@ -1,0 +1,51 @@
+<script>
+//#1. 배열의 내장함수 활용
+    console.log([0,1,2,3,4,5,6]);
+    console.log([0,1,2,3,4,5,6].concat(7,8,9));
+    console.log([0,1,2,3,4,5,6].concat({name:"홍당무"}));
+    console.log([0,1,2,3,4,5,6].map(function(x){return x*2}));
+    console.log([0,1,2,3,4,5,6].map(x => x*2));
+    //map() 내장함수는 최초의 인덱스로부터 인자값(인덱스와 배열 포함)을 받아서 하나씩 출력하는 과정에서 실행문 내부의 수식을 배열 데이터로 반환(for문과 같은 반복문으로 활용)
+
+    console.log([0,1,2,3,4,5,6].filter(function(x){return x%2 == 0}));
+    console.log([0,1,2,3,4,5,6].filter(x => x%2 == 0));
+    //filter() 내장함수는 최초의 인덱스로부터 인자값(인덱스와 배열 포함)을 받아서 조건과 일치하는 데이터만 배열로 반환(if문과 동일)
+
+//#2. map() 내장함수 : 변수명.map(function(v, i, a){..실행문..})
+    //실습1. map()내장함수를 이용하여 배열 데이터 존재하는 수의 제곱근 값을 배열로 반환시키시오.
+    const number1 = [1,2,3,4,5,6,7,8,9,10];
+    //1*1, 2*2
+    console.log(number1.map((v, i, a) => v * v));
+
+
+    //실습2. tel의 value값의 좌측에 '010-'를 추가하여 배열로 받아오기.
+    const user1 = [
+        {name:"홍길영", kor:95, eng:80, tel:"2222-3333"},
+        {name:"홍길일", kor:45, eng:78, tel:"2332-3443"},
+        {name:"홍길이", kor:78, eng:60, tel:"1122-3399"},
+        {name:"홍길삼", kor:90, eng:35, tel:"2266-8833"},
+        {name:"홍길사", kor:87, eng:94, tel:"0022-3377"},
+    ];
+
+    //실습2-1. tel만 010-value값을 연결하여 tel만 리턴받기 ["010-2222-3333", .....]
+    //console.log(user1.map(v => `010-${v.tel}`));
+
+    //실습2-2. tel만 변경된 전체 배열 리턴받기
+    const user1_m = user1.map(v => {
+        v.tel = `010-${v.tel}`;
+        return v;
+    });
+    console.log(user1_m);
+    console.log(user1);
+
+    //실습2-3. 각 학생의 kor 점수와 eng 점수를 합산한 값을 신규 total이라는 key명의 value값에 넣어주세요. 전체를 반환 받습니다. 
+    const user1_t = user1.map(v => {
+        v.total = v.kor + v.eng;
+        return v;
+    });
+    console.log(user1_t);
+
+
+
+
+</script>

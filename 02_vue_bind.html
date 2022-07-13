@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>02_vue_bind</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        .redStyle{color:red;}
+        #blueBg{background-color: #039; color:#fff;}
+        .kakaoTit{color:aqua;}
+    </style>
+</head>
+<body>
+    <!-- v-bind의 역할 : Vue 인스턴스 내부에서 선언된 data의 속성값들을 변수처럼 사용하여 HTML 문서상의 문자열로 표현하고 지정된 자리에 넣는다. -->
+    <div id="main">
+        <h2 v-bind:class="sColorName+'Style'">폰트 색상변경</h2>
+        <p :id="bgColor">배경색상</p>
+        <!-- "v-bind:"  ==(대체가능)==> ":" -->
+    </div>
+
+    <hr>
+
+    <div id="app">
+        <h3 :class="test">문장 타이틀</h3>
+        <img :src="'./img/'+imgSrc" :alt="altText">
+    </div>
+
+    <!-- 실습문제 : Vue 인스턴스를 생성하고 video 태그 내부에 영상 데이터를 전달하여 화면에 띄우시오. -->
+    <div id="video">
+        <video :src="'./video/' + bVideo" autoplay loop playsinline></video>
+    </div>
+
+
+    <script>
+
+        const video = new Vue({
+            el : "#video",
+            data : {
+                bVideo : "speaker.mp4"
+            }
+        });
+
+
+        const app = new Vue({
+            el : "#app",
+            data : {
+                test : "kakaoTit",
+                imgSrc : "kakao.jpg",
+                altText : "카카오 이미지"
+            }
+        })
+
+
+        const main = new Vue({
+            el : "#main",
+            data : {
+                sColorName : "red",
+                bgColor : "blueBg"
+            }
+        });
+    </script>
+    
+</body>
+</html>

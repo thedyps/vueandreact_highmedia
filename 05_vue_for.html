@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>05_vue_for(반복문)</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <!-- v-for 디렉티브는 반복하여 넣을 데이터를 하나씩 꺼내어 지정된 장소에 사용할 때 유용 -->
+    <div id="main">
+        <h2>좋아하는 과일을 순서대로 나열하기</h2>
+        <ol>
+            <li v-for="i in Fruits">
+                {{i.fruitItem}} ({{i.fruitNum}} 개)
+            </li>
+        </ol>
+    </div>
+
+    <!-- 실습문제 : 본인이 가고싶은 여행지 5개 도시명을 화면에 표현하기(by Vue 인스턴스에 작성된 데이터 기준) -->
+    <div id="app">
+        <h2>가고 싶은 여행지 5개 도시</h2>
+        <ul>
+            <!-- <li v-for="location in travel">{{location.region}}</li> -->
+            <li v-for="location in travel">{{location}}</li>
+        </ul>
+
+        <hr>
+
+        <h2>카카오 이미지 불러오기</h2>
+        <div class="kakao_case">
+            <div v-for="v of kakao">
+                <img :src="'./img/' + v.image" alt="">
+                <h3>{{v.title}}</h3>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const app = new Vue({
+            el : "#app",
+            data : {
+                // travel : [
+                //     {region : "파리"},
+                //     {region : "시드니"},
+                //     {region : "벤쿠버"},
+                //     {region : "리우"},
+                //     {region : "밀라노"},
+                // ]
+                travel : [
+                "파리", "시드니", "벤쿠버", "리우", "밀라노" 
+                ],
+                kakao : [
+                    {image : "img1.png", title : "와~ 첫눈이당"},
+                    {image : "img2.png", title : "바칸스 즐기기"},
+                ]
+            }
+        })
+
+
+
+        const main = new Vue({
+            el : "#main",
+            data : {
+            
+                Fruits : [
+                    {fruitItem : "사과", fruitNum : 5},
+                    {fruitItem : "바나나", fruitNum : 12},
+                    {fruitItem : "포도", fruitNum : 7},
+                    {fruitItem : "자두", fruitNum : 14},
+                    {fruitItem : "수박", fruitNum : 3},
+                ]
+            }
+        });
+    </script>
+</body>
+</html>

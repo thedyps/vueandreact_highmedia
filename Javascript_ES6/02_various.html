@@ -1,167 +1,172 @@
 <script>
     //{ } : 블록 스코프 - 하나의 메모리 공간 + 실행 공간
     //if(조건식){실행문}
-    //functon(){실행문}
-    //객체 = {key1: value1, key2: vaule2, key3: function2{실행문}....}
+    //function(){실행문}
+    //객체 = {key1:value1, key2:value2, key3:function(){실행문}, ..}
 
-    //#1. var, let, const 비교
-    //조건식에ㅓ 변수선언
-    var msg1 = "hello"; //전역변수
-    if(true) {
-        var msg1 ="Good Luck"; //지역변수
-        console.log(msg1); //Good Luck
+//#1. var, let, const 비교
+    //**변수 var**//
+    //조건식에서 변수선언
+    var msg1 = "hello";  //전역변수
+    if(true){
+        var msg1 = "Good Luck";  //지역변수
+        console.log(msg1);  //Good Luck
     }
-    console.log(msg1); //Good Luck => 왜 지역변수에서 선언한 값이 나오는가?
+    console.log(msg1);  //Good Luck ==> 왜 지역변수에서 선언된 값이 나오는가?
 
     //함수구문에서 변수선언
-    var msg2 = "nice";
-    function printOut1() {
-        var msg2 = "thank you";
-        console.log(msg2);//thank you
+    var msg2 = "nice";  //전역변수
+    function prinOut1(){
+        var msg2 = "thank you";  //지역변수
+        console.log(msg2);  //thank you
     }
-    printOut1();
-    console.log(msg2);//nice
-    //{} 스코프 또는 메모리 역할과 위치마다 선언된 변수값을
-    //일정하게 가져오지 못함(ES5 var 예약어의 문제점) => let ,const
-    //발생원인
-    
+    prinOut1();
+    console.log(msg2);  //nice
+    //{} 스코프 또는 블로 메모리 역할과 위치마다 선언된 변수값을 일정하게 가져오지 못함(ES5 var 예약어의 문제점) => let, const의 발생 원인
+
     //**변수 let**//
     //조건식에서 변수선언
-    let msg3 = "hello"; //확실한 전역변수
-    if(true) {
-        let msg3 = "Good Luck"; //확실한 지역변수
-        console.log(msg3);//Good Luck
+    let msg3 = "hello";  //확실한 전역변수
+    if(true){
+        let msg3 = "Good Luck";  //확실한 지역변수
+        console.log(msg3);  //Good Luck
     }
-    console.log(msg3);//hello
+    console.log(msg3);  //hello
 
     //함수구문에서 변수선언
-    let msg4 = "nice";
-    function printOut2() {
-        let msg4 = "thank you";
-        console.log(msg4);//nice
+    let msg4 = "nice";  //확실한 전역변수
+    function prinOut2(){
+        let msg4 = "thank you";  //확실한 지역변수
+        console.log(msg4);  //thank you
     }
-    printOut2();
-    console.log(msg4);//nic
+    prinOut2();
+    console.log(msg4);  //nice
+    //==> 변수를 let 예약어로 선언했을 때, 스코프의 위치 및 함수 실행문과 상관없이 동일 전역과 지역으로 구분할 수 있다.
 
-    //===> 변수를 let 예약어로 선언했을때, 스코프의 위치 및 함수 실행문과 상관없이 동일 전역과 지역으로 구분할 수 있다.
-    const msg5 = "hello";
-    if(true) {
-        const msg5 = "Good Luck"; //확실한 지역변수
-        console.log(msg5);//Good Luck
+    //**변수 const**//
+    //조건식에서 변수선언
+    const msg5 = "hello";  //확실한 전역변수
+    if(true){
+        const msg5 = "Good Luck";  //확실한 지역변수
+        console.log(msg5);  //Good Luck
     }
+    console.log(msg5);  //hello
 
-    const msg6 = "nice";
-    function printOut3() {
-        var msg6 = "thank you";
-        console.log(msg6);//thank you
+    //함수구문에서 변수선언
+    const msg6 = "nice";  //확실한 전역변수
+    function prinOut3(){
+        const msg6 = "thank you";  //확실한 지역변수
+        console.log(msg6);  //thank you
     }
-    printOut3();
-    console.log(msg6);
+    prinOut3();
+    console.log(msg6);  //nice
+    //==> 변수를 const 예약어로 선언했을 때, 스코프의 위치 및 함수 실행문과 상관없이 동일 전역과 지역으로 구분할 수 있다.
 
-
-    //#2 var와 let의 상세 비교
-    if(true) {
+//#2. var와 let의 상세 비교
+    if(true){
         var age1 = 20;
-        console.log(`1. 당신의 나이는: ${age1}`); //20
-    };
-    console.log(`2. 당신의 나이는 ${age1}`); //20
-
-    if(true) {
-        let age2 = 21;
-        console.log(`2. 당신의 나이는 ${age2}`); //21
+        console.log(`1. 당신의 나이는 : ${age1}`);  //20(1차 출력)
     }
-    //console.log(`2. 당신의 나이는 ${age2}`); //에러 발생: Uncaught ReferenceError: age2 is not defined
+    console.log(`2. 당신의 나이는 : ${age1}`);  //20(2차 출력)
 
-    //에러발생의 이유: 스코프 내부에서 var 예약어로 선언된 변수는 스코프는 외부로 전달이 가능(조건: 함수구문이 아니라는 조건)
-    //<- let예약어로 선언된 변수는 스코프 외부로 전달 될 수 없기 때문에 스코프 내부에서만 변수가 유효함
+    if(true){
+        let age2 = 21;
+        console.log(`1. 당신의 나이는 : ${age2}`);  //21(1차 출력)
+    }
+    //console.log(`2. 당신의 나이는 : ${age2}`);  //에러발생 age2 is not defined
 
-    if(true) {
+    //에러발생의 이유 : 스코프 내부에서 var 예약어로 선언된 변수는 스코프 외부로 전달이 가능(조건 : 함수구문 내의 실행문이 아니라는 조건) <-> let 예약어로 선언된 변수는 스코프 외부로 전달 될 수 없기 때문에 스코프 내부에서만 변수가 유효함
+    
+    if(true){
         let age3 = 20;
-        console.log(`1. 당신의 나이는: ${age3}`)
+        console.log(`1. 당신의 나이는 : ${age3}`);
     }
     let age3 = 24;
-    console.log(`1. 당신의 나이는: ${age3}`)
-    
+    console.log(`2. 당신의 나이는 : ${age3}`);
+
     //var와 let의 혼합
-    if(true) {
-        var age4 = 20;
-        console.log(`1. 당신의 나이는: ${age4}`)
-    }
-    //let age4 = 24; //Uncaught SyntaxError: Identifier 'age4' has already been declared
-    console.log(`1. 당신의 나이는: ${age4}`);
-
-
-    //==> 스코프 내부에서 var 예약어를 선언했다면, 스코프 외부까지 영향을 미치기때문에 동일한 let예약어로 선언한 변수형을 만나게 된다.
-    //let의 특성은 동일한 변수명을 인정하지 않음(스코프내에)
     /*
-    let cookie = "아이비";
-    let cookie = "참크래커";
+    if(true){
+        var age4 = 20;
+        console.log(`1. 당신의 나이는 : ${age4}`);
+    }
+    let age4 = 24;  //Identifier 'age4' has already been declared
+    console.log(`2. 당신의 나이는 : ${age4}`);
     */
 
-    let cookie = "아이비";
-    cookie="참크래커";
-    console.log(cookie);
+    //==> 스코프 내부에서 var 예약어를 선언했다면, 스코프 외부까지 영향을 미치기 때문에 동일한 let예약어로 선언한 동일한 변수명을 만나게 된다.
+    //let의 특성은 동일한 변수명을 인정하지 않음
+    /*
+    let cooki = "아이비";
+    let cooki = "참크래커";
+    */
 
-    if(true) {
-        let age5 = 26;
-        console.log(`1. 당신의 나이는: ${age5}`)
+    let cooki = "아이비";
+    cooki = "참크래커";
+    console.log(cooki);  //참크래커
+
+    if(true){
+        let age5 = 20;
+        console.log(`1. 당신의 나이는 : ${age5}`);  //20 출력
     }
     var age5 = 24;
-    console.log(`1. 당신의 나이는: ${age5}`)
+    console.log(`2. 당신의 나이는 : ${age5}`);  //24 출력
 
-    //#3. const의 상세비교 - 상수(내용을 갱신(교체) 할 수 없는 존재 + 배열 [] 또는 객체{}는 내부 데이터를 추가 또는 삭제 또는 변경 => 정적변수(불변변수))
+
+//#3. const의 상세비교 - 상수(내용을 갱신(교체)할 수 없는 존재) + 배열[] 또는 객체{}는 내부 데이터를 추가 또는 삭제 또는 변경 => 정적변수(불변변수)
     const number1 = 20;
     const string1 = "아이언맨";
-    console.log(`'number1': ${number1}, 'string1': ${string1}`);
+    console.log(`number1 : ${number1}`);
+    console.log(`string1 : ${string1}`);
 
-    const number2 = 20; //Uncaught TypeError: Assignment to constant variable. (데이터의 교체 불가)
+    const number2 = 20;
     const string2 = "아이언맨";
-    //const 예약어로 선언된 변수는 최초의 선언문에서 새로운 값을 받아들일 수 없은(const라는 상수 개념의 특징)
-    //number2 = 32;
-    //string2 = "앤트맨";
-    console.log(`'number2': ${number2}, 'string2': ${string2}`);
+    //number2 = 32;  //Assignment to constant variable.(데이터의 교체 불가)
+    //string2 = "앤트맨";  //Assignment to constant variable.(데이터의 교체 불가)
+    console.log(`number2 : ${number2}`);
+    console.log(`string2 : ${string2}`);
+    //const 예약어로 선언된 변수는 최초의 선언값에서 새로운 값을 받아 들일 수 없음 (const라는 상수 개념의 특징)
 
-    //배열 데이터의 경우, 추가 push(), unshift() 또는 삭제(pop, shift)했을 때
-    //했을 때 에러발생이 없음
-
+    //배열 데이터의 경우, 추가(push(), unshift()) 또는 삭제(pop(), shift())했을 때 에러 발생이 없음
     const num_arr = [25, 30, 35];
     num_arr.push(40);
-    console.log(num_arr);
+    console.log(num_arr);  //[25, 30, 35, 40]
     //건물이 존재한다면 그 내부의 구성원은 언제든지 이동, 제외 할 수 있음
 
-    //배열 데이터 자체 형식을 신규로 생성시 에러 발생
-    const str_arr = ["img_02_jpg", "img_03_jpg"];
+    //배열 데이터 자체 형식을 신규로 갱신시, 에러 발생
+    const str_arr = ["img_01.jpg", "img_02.jpg"];
+    //str_arr = ["photo1", "photo2"];
+    console.log(str_arr);  //Assignment to constant variable
 
-    //str_arr = ["img_02_jpg", "img_03_jpg"]; //Uncaught TypeError: Assignment to constant variable.
-    //객체 데이터(key.value1, key1:value1, key3: value3) 의 경우 내부의 새로운 key와 value 값을 추가 또는 삭제하는 것은 가능
-
+    //객체 데이터{key1:value1, key2:value2, key3:value3, key4:value4, ... }의 경우, 내부의 새로운 key명과 value 값을 추가 또는 기존의 삭제하는 것은 가능
     const dessert = {
-        keyword: "빙그래 바나나 우유",
-        category: "간식"
+        keyword : "빙그레 바나나 우유",
+        category : "간식"
     }
-    //keyword 값을 "빙그래 메로나"로 변경한다면
-    dessert.keyword = "빙그래 메로나";
+    //keyword의 값을 "빙그레 메로나"로 변경한다면
+    dessert.keyword = "빙그레 메로나";
     console.log(`오늘의 간식은 ${dessert.keyword}`);
     dessert.guest = "홍길동";
-    console.log(`간식을 먹은 사람은 ${dessert.guest}`);
+    console.log(`간식을 먹은 사람 : ${dessert.guest}`);
     console.log(dessert);
 
-    delete dessert.category; //객체 데이터에 저장된 특정 key만을 제거함으로써 담겨짐 value도 제거된다.
+    delete dessert.category; //객체 데이터에 저장된 특정 key명을 제거함으로써 담겨진 value값도 제거된다.
+
     console.log(dessert);
 
     //객체 데이터 자체를 변경할 수 없음
     const fav_obj = {
-        product: "레고",
-        category: "장난감"
+        product : "레고",
+        category : "장난감"
     }
-    //fav_obj = {};//Uncaught TypeError: Assignment to constant variable.
+    //fav_obj = {};
 
-    //04. 가변변수 let: 변수 데이터 자체를 갱신(교체)할 수 있음
+//#4. 가변변수 let : 변수 데이터 자체를 갱신(교체)할 수 있음
     let num = 1;
-    num = num * 5; //num = i * 5 = 5
+    num = num * 5;  //num = 1 * 5 = 5
     num = 23;
-
     console.log(num);
+
     let str = "문자형 데이터";
     str = `I'm ${str}`;
     console.log(str);
@@ -170,79 +175,86 @@
     arr = ["red", "orange", "yellow"];
     console.log(arr);
 
-    let obj = {hero: "홍길동"};
-    obj = {영화제목: "설국열차", 주인공: "송강호"};
+    let obj = {hero : "홍길동"}
+    obj = {영화제목 : "설국열차", 주인공 : "송강호"}
     console.log(obj);
 
-    //#5. 불변변수 const + javascript 내장 함수 사용
+//#5. 불변변수 const + 자바스크립트 내장함수 사용
     const obj2 = {};
-    Object.assign(obj2, {new0: "BTS"}, {new1: "아이유"});
+    Object.assign(obj2, {new0 : "BTS"}, {new1 : "아이유"});
     console.log(obj2);
 
-    Object.assign(obj2, {new0: "김명자"});
+    Object.assign(obj2, {new0 : "김연자"});
     console.log(obj2);
 
-    //assign(객체 변수, {신규 key1 : 신규 value1}, {신규 key2: 신규 value2}, ....);
-    //내장함수: 객체 내부에 새로운 값을 할당(배치) 할 수 있으며
-    //assign(객체 변수, {기존 key1 : 신규 value1}) //기존 key1의 value1 값을 신규 value1 값으로 교체할 수 있음
+    //assign(객체 변수, {신규 key1 : 신규 value1}, {신규 key1 : 신규 value1}, ...) 내장함수 : 객체 내부에 새로운 값을 할당(배치)할 수 있으며,
 
-    //실습 문제 : assign()
+    //assign(객체 변수, {기존 key1 : 신규 value1})  //기존 key1의 value1값을 신규 value1 값으로 교체 할 수 있음
+
+    //실습문제 : assign()
     const hero = {
-        name: "토마토 재바자",
-        device: "호미",
-        cloth: "일반 가죽옷"
+        name : "토마토 재배자",
+        device : "호미",
+        cloth : "일반 가죽옷"
     }
 
-    //assign() 내장 함수를 활용하여 객체 (hero)의 속성 device를 "곡갱이"로 변경하고, cloth를 "린낸옷"으로 변경하고, level을 2로 추가한다(최종 변경된 객체를 콘솔창에 출력)
-    Object.assign(hero, {cloth: "린낸옷"}, {level: 2});
-    console.log(`${hero.name} 의 device는 ${hero.device}이고 level은 ${hero.level}, cloth은 ${hero.cloth}이다`);
+    //assign() 내장함수를 활용하여 객체(hero)의 속성 device를 "곡괭이"로 변경하고, cloth를 "린넨옷"으로 변경하고, level을 2로 추가한다. (최종 변경된 객체를 콘솔창에 출력)
+    Object.assign(hero, {device:"곡괭이"}, {cloth:"린넨옷"}, {level:2});
+    console.log(hero);
+    
 
-    //#6. 불변변수 const + 전개 연산자(나열형 자료(배열, 객체)를 추출하거나 연결자 사용)
+//#6. 불변변수 const + 전재 연산자(나열형 자료(배열, 객체)를 추출하거나 연결시 사용)
     const arr3 = [0];
     const arr4 = arr3.concat(1);
-    console.log(arr4);//[0, 1]
+    console.log(arr4);  //[0, 1]
 
     const arr5 = [...arr4, 2, 3];
-    console.log(arr5);// [0, 1, 2, 3]
+    console.log(arr5);  //[0, 1, 2, 3]
 
-    const [a1, b1, c1, d1] = arr5;
-    console.log(a1);
-    console.log(b1);
-    console.log(c1);
-    console.log(d1);
+    const [a1, b1, c1, d1] = arr5;  //[0, 1, 2, 3]
+    console.log(a1);  //0
+    console.log(b1);  //1
+    console.log(c1);  //2
+    console.log(d1);  //3
 
-    const [first, ...arr6] = arr5;
-    console.log(first); //0
-    console.log(arr6); //[1, 2, 3]
+    const [first, ...arr6] = arr5;  //[0, 1, 2, 3]
+    console.log(first);  //0
+    console.log(arr6);  //[1,2,3]
 
-    //전개연산자를 활용하여 마지막 인덱스에 위치한 [3]으로 값을 출력하시요. (from arr5);
-    const [a2, b2, c2, ...arr7]  = arr5;
+    //전개연산자를 활용하여 마지막 인덱스에 위치한 [3]으로 값을 출력하시오. (from arr5)
+
+    const [num1, num2, num3, ...arr7] = arr5;
     console.log(arr7);
 
+
     //객체에서의 전개연산자 활용
-    const obj3 = {name: "홍길동", age: 20, region: "서울"};
-    const obj4 = {...obj3, context : "아버지를 아버지라...."};
-    console.log(obj4);
+    const obj3 = {name:"홍길동", age:20, region:"서울"};
+    const obj4 = {...obj3, context : "아버지를 아버지라..."};
+    console.log(obj4);  //{name: '홍길동', age: 20, region: '서울', context: '아버지를 아버지라...'}
 
-    const obj4_1 = {...obj4, age: 21};
-    console.log(obj4_1);//{name: '홍길동', age: 21, region: '서울', context: '아버지를 아버지라....'}
+    const obj4_1 = {...obj4, age : 21};
+    console.log(obj4_1);  //{name: '홍길동', age: 21, region: '서울', context: '아버지를 아버지라...'}
 
-    const obj4_2 = {age: 22, ...obj4_1};
-    console.log(obj4_2);//{age: 21, name: '홍길동', region: '서울', context: '아버지를 아버지라....'}
-    //전개연산자를 적용하는 위치가 매우 중요하다
+    const obj4_2 = {age : 22, ...obj4_1};
+    console.log(obj4_2);  //{age: 21, name: '홍길동', region: '서울', context: '아버지를 아버지라...'}
+    //전개연산자를 적용하는 위치가 매우 중요
 
-    const {age, ...sObj} = obj4;
-    console.log(age); //20
-    console.log(sObj); //{name: '홍길동', region: '서울', context: '아버지를 아버지라....'}
+    const {age, ...sObj} = obj4;  //{name: '홍길동', age: 20, region: '서울', context: '아버지를 아버지라...'}
+    console.log(age);  //20
+    console.log(sObj); //{name: '홍길동', region: '서울', context: '아버지를 아버지라...'}
+
+
 
 
 </script>
 
-<button class="btn1">클릭 미</button>
+
+<button class="btn1">클릭 미~!</button>
 
 <script>
     const $btn1 = document.querySelector(".btn1");
-    $btn1.addEventListener('click', function(evt) {
+
+    $btn1.addEventListener("click", function(evt){
         console.log(evt);
     });
 </script>

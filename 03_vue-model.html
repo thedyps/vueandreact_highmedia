@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>03_vue-model(데이터 통신)</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <!-- v-model 디렉티브를 사용하면 어떤 입력값에 대한 내용을 실시간으로 표시하는 양방향 데이터 전달을 구현할 수 있음 -->
+
+    <div id="main">
+        <p>{{message}}</p>
+        <input type="text" v-model:value="message">
+    </div>
+
+    <!-- 실습문제 : v-model을 사용하여 입력상자를 작성하고 그 결과를 "User 이름 : 홍길동(변수)" 표현-->
+
+    <hr>
+
+    <div id="app">
+        <input type="text" v-model:value="username" placeholder="이름을 입력하세요">
+        <p>User 이름 : {{username}}</p>
+    </div>
+
+    <script>
+        const vue1 = new Vue({
+            el : "#main",
+            data : {
+                message : "아래의 입력상자에 구문을 작성해 보세요."
+            }
+        });
+
+        const vue2 = new Vue({
+            el : "#app",
+            data : {
+                username : ""
+            }
+        });
+
+        /*
+        [v-bind VS v-model]
+        v-bind : 단방향 데이터 바인딩
+        v-model : 양방향 데이터 바인딩
+
+        <input type="text" v-bind:value="sData">  //sData 값을 문서의 input 영역에 어트리뷰트의 값으로 전달
+        <input type="text" v-model:value="sMsg">  //sMsg 값을 지정위치의 내용과 연동이 가능
+        */
+    </script>
+</body>
+</html>

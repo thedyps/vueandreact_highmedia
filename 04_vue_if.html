@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>04_vue_if(조건문)</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <!-- v-if 디렉티브는 태그 내부에 선언하고 그 값의 true 또는 false에 따라서 화면에 보여줄 것인지 아닌지를 결정 -->
+    <div id="main">
+        <h3>{{sCoin}}</h3>
+        <p v-if="sCoin == true">앞면</p>
+        <p v-else>뒷면</p>
+    </div>
+
+    <div id="app">
+        <button v-if="bool">로그인</button>
+        <button v-else>로그아웃</button>
+    </div>
+
+    <script>
+        const main = new Vue({
+            el : "#main",
+            data : {
+                sCoin : Math.random() > 0.5  //비교연산자의 출력 값은 true 또는 false
+            }
+        });
+        const app = new Vue({
+            el : "#app",
+            data : {
+                bool : false
+            }
+        });
+
+    </script>
+</body>
+</html>
